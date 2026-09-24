@@ -1,0 +1,47 @@
+import {test,expect} from '@playwright/test';
+test('consultation finder, contact details, search, and languages',async({page})=>{
+ await page.goto('http://localhost:3000');
+ await expect(page.getByRole('heading',{name:'Thinking of moving? Let’s talk it through.'})).toBeVisible();
+ await page.getByRole('button',{name:'Let’s figure it out together',exact:true}).click();
+ await page.getByRole('dialog').getByRole('button',{name:'Work in Germany'}).click();
+ await page.getByRole('button',{name:'Not yet',exact:true}).click();
+ await page.getByRole('dialog').getByRole('link',{name:'Discuss my situation'}).click();
+ await expect(page).toHaveURL(/contact\?topic=work&stage=no/);
+ await expect(page.getByLabel('Reason for contacting us')).toHaveValue('work');
+ await expect(page.getByLabel('Your current situation')).toHaveValue('no');
+ await page.getByRole('button',{name:'Review my request'}).click();
+ await expect(page.getByRole('link',{name:'Continue to WhatsApp'})).toHaveCount(0);
+ await page.getByLabel('Your name').fill('Test Visitor');
+ await page.getByLabel('What help are you requesting?').fill('I need help planning my move for a new job.');
+ await page.getByRole('button',{name:'Review my request'}).click();
+ const whatsapp=page.getByRole('link',{name:'Continue to WhatsApp'});
+ await expect(whatsapp).toHaveAttribute('href',/https:\/\/wa.me\/4917689161600\?text=/);
+ expect(decodeURIComponent((await whatsapp.getAttribute('href'))!)).toContain('I need help planning my move for a new job.');
+ await expect(page.getByRole('link',{name:'Continue to email'})).toHaveAttribute('href',/mailto:ressay93@outlook.com\?subject=/);
+ await page.getByRole('button',{name:'Edit my request'}).click();
+ await expect(page.getByLabel('Your name')).toHaveValue('Test Visitor');
+ await expect(page.getByLabel('What help are you requesting?')).toHaveValue('I need help planning my move for a new job.');
+ await page.setViewportSize({width:390,height:900});
+ await page.screenshot({path:'/tmp/ankommen-enquiry-mobile.png',fullPage:true});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.setViewportSize({width:1440,height:1000});
+ await page.goto('http://localhost:3000/guides/anmeldung');
+ await expect(page.getByRole('main').getByRole('link',{name:'Get professional help',exact:true})).toHaveAttribute('href','/contact?topic=anmeldung');
+ await expect(page.getByRole('checkbox')).toHaveCount(0);
+ await expect(page.getByRole('heading',{name:'Step by step'})).toHaveCount(0);
+ await page.goto('http://localhost:3000');
+ await page.getByRole('textbox',{name:'What do you need help with?'}).fill('Anmeldung');
+ await expect(page.locator('.search-results').getByRole('link',{name:/Registering your address/})).toBeVisible();
+ await page.getByRole('combobox',{name:'Language'}).selectOption('de');
+ await expect(page.getByRole('heading',{name:'Du möchtest umziehen? Reden wir darüber.'})).toBeVisible();
+ await page.goto('http://localhost:3000/work');await expect(page.getByRole('heading',{name:'Arbeiten in Deutschland'})).toBeVisible();
+ await page.getByRole('combobox',{name:'Language'}).selectOption('tr');await expect(page.getByRole('heading',{name:'Almanya’da çalış'})).toBeVisible();
+});
+test('desktop and mobile render without overflow',async({page})=>{
+ await page.goto('http://localhost:3000');await page.screenshot({path:'/tmp/ankommen-desktop.png',fullPage:true});
+ for(const width of [1440,768,390]){await page.setViewportSize({width,height:900});await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true)}
+ await page.screenshot({path:'/tmp/ankommen-mobile.png',fullPage:true});
+ await page.getByRole('button',{name:'Open menu'}).click();await expect(page.getByRole('dialog')).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
+ await expect(page.locator('.conversation-prompts a')).toHaveCount(3);
+ await expect(page.locator('.conversation-prompts a').first()).toHaveAttribute('href','/contact?topic=work');
+});
