@@ -1,0 +1,102 @@
+/* Shared premium presentation. Content and interactions stay in platform.tsx. */
+:root{--premium-ease:cubic-bezier(.22,1,.36,1)}
+#main{background-image:radial-gradient(ellipse 650px 480px at 85% 120px,#d8b97009,transparent)}
+header{border-bottom-color:color-mix(in srgb,var(--gold) 18%,transparent)}
+.nav nav{gap:18px}.nav nav a{border-radius:10px;padding-inline:8px}
+.nav nav a:not(:last-child):hover{background:var(--gold-soft);text-decoration:none}
+.nav .brand-symbol{color:var(--gold)}
+h2{font-size:36px;letter-spacing:-1.2px;line-height:1.22}
+.eyebrow{font-size:10px;letter-spacing:2px;font-weight:600}
+.hero{padding-block:52px;grid-template-columns:1.1fr 1fr;gap:48px}
+.hero h1{font-size:clamp(42px,4.45vw,64px);line-height:1.08;letter-spacing:-2.8px;margin-block:24px}
+.hero h1 em{display:inline-block;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-style:italic;letter-spacing:-2.5px;line-height:1.15}
+.hero-copy>p{max-width:440px;font-size:17px;line-height:1.8}
+.hero-copy>.hero-reassurance{max-width:390px;font-size:12px!important}
+.hero-actions{gap:10px;margin-top:28px}
+.button.primary,.button.light,.nav nav a:last-child{background:linear-gradient(120deg,#ead6a5,#d6b875);border-color:#dfc58b;color:#211c12;box-shadow:inset 0 1px 0 #ffffff50,0 4px 16px #00000012}
+.button{min-height:52px;padding:14px 22px;border-radius:12px}
+.button.text-button{font-weight:500}
+.conversation-card{padding:16px 16px 20px;border-radius:24px;border-color:color-mix(in srgb,var(--gold) 24%,var(--line));background-color:var(--surface);box-shadow:0 20px 60px #00000020,inset 0 1px 0 #ffffff05}
+.conversation-photo{height:235px;border-radius:14px;margin-bottom:24px;object-position:center 52%}
+.conversation-card>.eyebrow,.conversation-card>h2,.conversation-card>p,.conversation-prompts{margin-inline:12px}
+.conversation-card h2{font-size:27px;letter-spacing:-.8px}
+.conversation-prompts a{font-size:14px;min-height:54px;padding-inline:0}
+.conversation-prompts svg{width:28px;height:28px;padding:6px;border:1px solid var(--line);border-radius:50%}
+.conversation-card>p{font-size:12px;margin-bottom:0}
+.search-strip{background:color-mix(in srgb,var(--surface) 55%,var(--paper));border-color:var(--line)}
+.search-strip-inner{min-height:88px}.search-input{background:var(--paper);border-radius:14px}
+.section{padding-block:56px}.section-heading{margin-bottom:28px;align-items:flex-end}
+.section-heading h2{margin-block:10px 12px}.section-heading p{max-width:540px}
+.path-grid{gap:22px}.path-card.photo-path-card,.guide-card{padding:10px;background:var(--surface);border-radius:20px;border-color:var(--line)}
+.path-photo,.guide-photo,.carousel-track .guide-photo{height:190px;width:100%;border-radius:12px;object-fit:cover}
+.path-photo-copy{padding:20px 12px 16px}.path-photo-copy h3{font-size:20px;letter-spacing:-.5px}
+.path-photo-copy:after{right:12px;top:17px;font-size:22px}.path-card p{font-size:14px;margin-top:9px;line-height:1.7}
+.path-hint{padding-top:12px;font-size:13px}
+.popular-section{background:color-mix(in srgb,var(--surface) 38%,var(--paper))}
+.carousel-heading{margin-bottom:24px}.carousel-track{gap:20px}
+.guide-card-copy,.popular-section .guide-card-copy,.carousel-track .guide-card-copy{padding:20px 12px 12px}
+.guide-card-copy .eyebrow{font-size:10px;letter-spacing:1.4px;margin-bottom:10px}
+.guide-card h3{font-size:21px;letter-spacing:-.6px;line-height:1.35}.guide-card p{line-height:1.75}
+.guide-bottom{padding-top:18px;font-size:12px}.guide-bottom svg{color:var(--gold)}
+.guide-symbol,.carousel-track .guide-symbol{padding:18px 12px 4px}
+.carousel-controls button{background:transparent;border-color:var(--line)}
+.journey-section h2{max-width:720px}.journey-section .contact-steps{gap:0;border-block:1px solid var(--line);margin-top:28px}
+.journey-section .contact-steps li{border:0;border-radius:0;background:transparent;padding:28px 24px;flex-direction:column;gap:16px}
+.journey-section .contact-steps li+li{border-left:1px solid var(--line)}
+.journey-section .step-number{background:transparent;border:0;width:auto;height:auto;font-family:Georgia,serif;font-size:36px;font-weight:400;line-height:1;color:var(--gold)}
+.journey-section .contact-steps h3{font-size:19px;margin-top:0}.journey-section .contact-steps p{margin:0;line-height:1.75}
+.life-section{gap:48px;padding-bottom:56px;align-items:center}
+.everyday-note{padding:36px;background-image:radial-gradient(ellipse at top left,#d8b97012,transparent 75%);border-radius:22px}
+.everyday-note h2,.newsletter h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:38px;line-height:1.15;letter-spacing:-1px}
+.everyday-note .text-link{margin-top:22px}.life-content h2{font-size:34px;margin-block:16px}
+.life-links{margin-block:22px;gap:0 24px}.life-links a{min-height:60px;font-size:14px}
+.life-links a>svg:first-child{color:var(--gold)}
+.faq-section{gap:64px}.faq-section h2{font-size:36px;margin-top:16px}
+.faq-section details{padding-inline:0}.faq-section summary{padding-block:24px;font-size:16px;font-weight:500}
+.faq-section summary svg{width:28px;height:28px;padding:5px;background:var(--gold-soft);border-radius:50%;color:var(--gold)}
+.faq-section details p{padding-bottom:12px;max-width:560px}
+.newsletter{padding:42px;border-radius:24px;background:linear-gradient(115deg,#292216,#161512 80%);border-color:#685332;box-shadow:inset 0 1px 0 #e2c99116;margin-bottom:48px}
+.newsletter h2{max-width:590px;margin-block:16px}.newsletter .button{flex-shrink:0}
+.inner-page{padding-top:48px}.inner-page h1{font-size:clamp(36px,4vw,54px);line-height:1.13;letter-spacing:-1.8px}
+.inner-page>.lead{max-width:760px;font-size:18px;line-height:1.8}
+.filter-row{gap:8px;margin-block:24px}.filter-row button{border-radius:100px;min-height:44px;padding-inline:18px;font-size:13px}
+.consultation-panel{border-radius:22px;background:var(--surface);padding:32px;box-shadow:0 12px 40px #00000012}
+.consultation-panel h2{font-size:29px}.enquiry-form{gap:12px}.enquiry-form label{font-size:13px;margin-top:14px}
+.enquiry-form input,.enquiry-form select,.enquiry-form textarea{border-radius:12px;background:var(--paper);padding:14px 16px}
+.enquiry-form .button{align-self:flex-start;margin-top:12px}
+.contact-expectations{background:transparent;border-radius:20px;padding:26px;border-color:var(--line)}
+.contact-expectations h2{font-size:22px}.contact-expectations .step-number{background:var(--gold-soft)}
+.related-links>a{gap:16px;padding-block:20px;font-size:15px}.related-links svg{flex-shrink:0;color:var(--gold)}
+dialog{border-radius:22px;padding:30px;background:var(--surface);box-shadow:0 30px 100px #00000050}
+dialog::backdrop{background:#080808aa;backdrop-filter:blur(6px)}
+html[data-theme="light"] .newsletter{background:linear-gradient(115deg,#eee5d1,#faf7f0);border-color:#d8c7a0}
+html[data-theme="light"] .popular-section,html[data-theme="light"] .search-strip{background:#f3f0e8}
+@media(hover:hover){.path-card:hover,.guide-card:hover{box-shadow:0 14px 32px #00000018;border-color:var(--gold)}}
+@media(max-width:1150px){.hero{gap:30px}.hero h1{font-size:49px}.nav nav{gap:8px}.nav nav a{padding-inline:5px}.nav nav a:last-child{padding-inline:12px}.conversation-photo{height:210px}}
+@media(max-width:1000px){
+ .hero h1{font-size:44px;letter-spacing:-1.8px}.hero h1 em{letter-spacing:-1.7px}
+ .hero-copy>p{font-size:16px}.conversation-card h2{font-size:24px}.conversation-prompts a{font-size:13px}
+ .journey-section .contact-steps{grid-template-columns:1fr}.journey-section .contact-steps li{flex-direction:row;gap:24px;padding:24px 0}
+ .journey-section .contact-steps li+li{border-left:0;border-top:1px solid var(--line)}
+ .journey-section .step-number{min-width:40px}.life-section{gap:28px}.newsletter{padding:32px}
+}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr;padding-block:30px;gap:28px}.hero h1{font-size:clamp(37px,9.1vw,56px);letter-spacing:-1.7px;margin-block:18px}
+ .hero h1 em{letter-spacing:-1.5px}.hero-copy>p{font-size:16px;line-height:1.7}.hero-actions{margin-top:22px}
+ .conversation-photo{height:195px;margin-bottom:20px}.conversation-card{padding:12px 12px 18px;border-radius:20px}
+ .conversation-card>.eyebrow,.conversation-card>h2,.conversation-card>p,.conversation-prompts{margin-inline:8px}
+ .conversation-card h2{font-size:25px}.conversation-prompts a{font-size:14px}
+ .section{padding-block:38px}.section-heading{align-items:start;margin-bottom:22px}.section-heading h2{font-size:29px}
+ .path-grid{gap:14px}.path-card.photo-path-card,.guide-card{padding:8px;border-radius:17px}
+ .path-photo{height:150px}.path-photo-copy{padding:18px 10px 12px}.path-photo-copy h3{font-size:18px}.path-card p{font-size:13px}
+ .path-photo-copy:after{right:8px}.carousel-heading{margin-bottom:18px}.guide-card h3{font-size:20px}
+ .guide-card-copy,.popular-section .guide-card-copy,.carousel-track .guide-card-copy{padding:18px 10px 10px}
+ .life-section{padding-bottom:38px}.everyday-note{padding:28px}.everyday-note h2,.newsletter h2{font-size:33px}
+ .life-content h2,.faq-section h2{font-size:29px}.faq-section{gap:20px}.faq-section summary{font-size:15px;padding-block:20px}
+ .newsletter{padding:28px;margin-bottom:32px;gap:20px}.newsletter .button{align-self:flex-start}
+ .inner-page{padding-top:32px}.inner-page h1{font-size:37px;letter-spacing:-1.2px}.inner-page>.lead{font-size:16px;line-height:1.7}
+ .contact-layout .consultation-panel{padding:24px}.contact-expectations{padding:0;background:var(--surface)}
+ .consultation-panel h2{font-size:25px}.enquiry-form .button{align-self:stretch}.filter-row button{font-size:12px;padding-inline:14px}
+ dialog{padding:24px}
+}
+@media(max-width:420px){.path-photo{height:190px}.path-card p{font-size:14px}.path-photo-copy h3{font-size:20px}.hero-actions .button{padding-inline:16px}}

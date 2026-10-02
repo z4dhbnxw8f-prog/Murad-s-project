@@ -17,9 +17,6 @@ export const copy = {
  disclaimer:['Independent guidance, not a government service or legal advice. Rules can change. Confirm requirements with the responsible authority.','Unabhängige Orientierung, keine Behörde oder Rechtsberatung. Regeln können sich ändern. Bestätige Anforderungen bei der zuständigen Behörde.','Bağımsız bilgilendirmedir; devlet hizmeti veya hukuki danışmanlık değildir. Kurallar değişebilir. Gereklilikleri yetkili makamdan doğrula.'],
 } satisfies Record<string,LocalText>;
 export const sources = [
- {name:'Make it in Germany',url:'https://www.make-it-in-germany.com/en/visa-residence/types'},
- {name:'Federal Foreign Office',url:'https://www.auswaertiges-amt.de/en/visa-service'},
- {name:'BAMF',url:'https://www.bamf.de/EN/Themen/Integration/integration-node.html'},
  {name:'Recognition in Germany',url:'https://www.anerkennung-in-deutschland.de/html/en/index.php'},
 ];
 export const paths: {id:string;title:LocalText;desc:LocalText;icon:string;topics:string[];question:LocalText}[] = [

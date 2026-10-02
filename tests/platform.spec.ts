@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
+const baseURL=process.env.PLAYWRIGHT_BASE_URL||'http://localhost:3000';
 test('consultation finder, contact details, search, and languages',async({page})=>{
- await page.goto('http://localhost:3000');
+ await page.goto(baseURL);
  await expect(page.getByRole('heading',{name:'Thinking of moving? Let’s talk it through.'})).toBeVisible();
  await page.getByRole('button',{name:'Let’s figure it out together',exact:true}).click();
  await page.getByRole('dialog').getByRole('button',{name:'Work in Germany'}).click();
@@ -25,20 +26,20 @@ test('consultation finder, contact details, search, and languages',async({page})
  await page.screenshot({path:'/tmp/ankommen-enquiry-mobile.png',fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.setViewportSize({width:1440,height:1000});
- await page.goto('http://localhost:3000/guides/anmeldung');
+ await page.goto(`${baseURL}/guides/anmeldung`);
  await expect(page.getByRole('main').getByRole('link',{name:'Get professional help',exact:true})).toHaveAttribute('href','/contact?topic=anmeldung');
  await expect(page.getByRole('checkbox')).toHaveCount(0);
  await expect(page.getByRole('heading',{name:'Step by step'})).toHaveCount(0);
- await page.goto('http://localhost:3000');
+ await page.goto(baseURL);
  await page.getByRole('textbox',{name:'What do you need help with?'}).fill('Anmeldung');
  await expect(page.locator('.search-results').getByRole('link',{name:/Registering your address/})).toBeVisible();
  await page.getByRole('combobox',{name:'Language'}).selectOption('de');
  await expect(page.getByRole('heading',{name:'Du möchtest umziehen? Reden wir darüber.'})).toBeVisible();
- await page.goto('http://localhost:3000/work');await expect(page.getByRole('heading',{name:'Arbeiten in Deutschland'})).toBeVisible();
+ await page.goto(`${baseURL}/work`);await expect(page.getByRole('heading',{name:'Arbeiten in Deutschland'})).toBeVisible();
  await page.getByRole('combobox',{name:'Language'}).selectOption('tr');await expect(page.getByRole('heading',{name:'Almanya’da çalış'})).toBeVisible();
 });
 test('desktop and mobile render without overflow',async({page})=>{
- await page.goto('http://localhost:3000');await page.screenshot({path:'/tmp/ankommen-desktop.png',fullPage:true});
+ await page.goto(baseURL);await page.screenshot({path:'/tmp/ankommen-desktop.png',fullPage:true});
  for(const width of [1440,768,390]){await page.setViewportSize({width,height:900});await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true)}
  await page.screenshot({path:'/tmp/ankommen-mobile.png',fullPage:true});
  await page.getByRole('button',{name:'Open menu'}).click();await expect(page.getByRole('dialog')).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
